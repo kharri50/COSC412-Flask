@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block projectname %} Dashboard {% endblock projectname %}
+
+
+{% block content %}
+
+
+{% if username == "NOT_SET" %}
+    <p>You must be logged in to see this page. </p>
+{% else %}
+    <!-- the code for displaying the user dashboard goes here -->
+    <p>Welcome, {{ user.f_name }} to the user dashboard!</p>
+ {% if hasgroup == "TRUE" %}
+    {% for group in user.members  %}
+        {{ group.name }}
+        {% for member in group.subscribers %}
+            {{ member.f_name }}
+        {% endfor %}
+    {% endfor %}
+     {% else %}
+     <p>You don't have a group. Would you like to <a href="/create_group/">create one?</a></p>
+ {% endif %}
+
+{% endif %}
+
+{% endblock %}

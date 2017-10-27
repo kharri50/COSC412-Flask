@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block projectname %} GEMS {% endblock projectname %}
+
+
+{% block jumboHeading %} Welcome to GEMS {% endblock %}
+
+{% block welcomeMessage %}
+    Filler content for welcome to GEMS. Overide with something useful
+{% endblock welcomeMessage %}
+
+{% block heading1 %}
+
+  {% block heading1Title %}
+      <h4> Heading one override example </h4>
+  {% endblock heading1Title %}
+
+    {% block heading1Content %}
+       <p> If you wish to override the headings in the layout template,
+        follow this template to do so. Feel free to create different content
+        blocks for override.
+       </p>
+    {% endblock %}
+
+{% endblock heading1 %}
+
+
+{% block heading2 %}
+
+  {% block heading2Title %}
+      <h4> Heading two override </h4>
+  {% endblock heading2Title %}
+
+    {% block heading2Content %}
+       <p>
+        Second example of a heading override.
+       </p>
+    {% endblock heading2Content %}
+
+{% endblock heading2 %}

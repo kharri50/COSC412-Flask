@@ -1,0 +1,36 @@
+{%  extends 'layout.html' %}
+
+
+{% block customCSS %}<link href="/static/signin.css" rel="stylesheet">{% endblock %}
+<!-- override the content block and put the signup form in -->
+{% block content %}
+    <div class="container">
+
+      <form class="form-signin" action="/login/" method="POST">
+
+        <h2 class="form-signin-heading">Sign in to GEMS</h2>
+
+           <label for="inputUsername" class="sr-only">Last name</label>
+          <input type="text" id="input_uname" name="input_uname" class="form-control" placeholder="Username" required style="margin-bottom: 3%" >
+
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="input_password" name="input_password" class="form-control" placeholder="Password" required style="margin-bottom: 3%">
+
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+      </form>
+
+    </div> <!-- /container -->
+
+
+    {%  if sucessval == "FALSE" %}
+     <script type="application/javascript">
+      alert("Invalid login.")
+     </script>
+    {% endif %}
+
+    {%  if sucessval == "TRUE" %}
+     <p>Valid login</p>
+    {% endif %}
+
+{% endblock content %}

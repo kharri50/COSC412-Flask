@@ -1,0 +1,16 @@
+{% block title %} Group {{ group.id }} description {% endblock %}
+{% block content %}
+ <p> Group description... </p>
+     <p> {{ group.name }} </p>
+     <p> {{ group.admin_id }}</p>
+
+    <br>
+
+    <p> Group members </p>
+    {% for user in users %}
+     <p> {{ user.f_name }} {{ user.l_name }} {{ user.email }} {{ user.f_name }}</p>
+    {% endfor %}
+{% endblock content %}
+
+</body>
+</html>
