@@ -15,7 +15,7 @@
     {% for group in user.members  %}
         {{ group.name }}
         {% for member in group.subscribers %}
-            {{ member.f_name }}
+            <p>{{ member.f_name }}</p>
         {% endfor %}
     {% endfor %}
      {% else %}
@@ -23,5 +23,15 @@
  {% endif %}
 
 {% endif %}
+
+<!-- creating a new element that can be modified by reactJS -->
+<div class="container" id = 'reactContainer'>
+
+</div>
+
+<script type="application/javascript">
+
+
+</script>
 
 {% endblock %}

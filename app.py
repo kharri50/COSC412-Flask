@@ -33,6 +33,7 @@ class User(db.Model):
 class Group(db.Model):
     id = db.Column(db.INTEGER, primary_key=True, nullable=False)
     name = db.Column(db.VARCHAR(55), nullable=False)
+    description = db.Column(db.TEXT, nullable=True)
     admin_id = db.Column(db.INTEGER)
 
     # creating a second multi-relationship so two way queries can be ran
@@ -137,6 +138,11 @@ def dashboard():
     else:
         user = "NOT_SET"
     return render_template('dashboard.html', user=user_obj, hasgroup=hasGroup)
+
+
+@app.route('/create_group/')
+def create_group():
+    return render_template('create_group.html')
 
 
 if __name__ == '__main__':
