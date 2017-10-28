@@ -103,13 +103,32 @@ def process_create_group():
             g = Group(name=group_name, description=desc, admin_id=admin_id)
             db.session.add(g)
             db.session.commit()
-            return redirect('/create_group/')
+            return render_template('/edit_group/{}'.format(g.id))
         else:
             return """"<script type="text/javascript"> alert("Invalid admin username ");\
             window.location.href='/create_group/'; </script>"""
         return redirect('/create_group/')
     else:
         return redirect('/create_group/')
+
+
+@app.route('/edit_group/<int:group_id>')
+def edit_group(group_id):
+    # get the currently logged in user from the session
+    current_user = session['username']
+    # get the group object from the group id
+    group = Group.query.filter_by(id=group_id).first()
+    print("Group name from query : {}".format(group.name))
+    if group is not None:
+        # get the admin from the group admin_id
+        print("Group admin id : {}".format(group.admin_id))
+        user = User.query.filter_by(id = group.admin_id).first()
+        # check if the user.username is equal to the currently logged in user
+        print("Username from query : {}".format(user.username))
+        isAdmin = False
+        if current_user == user.username:
+            isAdmin = True
+        return render_template('edit_group.html', group=group, isAdmin=isAdmin)
 
 
 @app.route('/group/<int:group_id>')
@@ -166,6 +185,32 @@ def dashboard():
     else:
         user = "NOT_SET"
     return render_template('dashboard.html', user=user_obj, hasgroup=hasGroup)
+
+
+@app.route('/process_group_edit/<int:action>', methods=['POST'])
+def process_group_edit(action):
+    # print("Data from AJAX/FLASK: {}".format(request.form['user_name']))
+    # print("DATA FROM AJAX GROUP ID: {}".format(request.form['group_num']))
+
+    # get the user that we have from the id
+    user = User.query.filter_by(username=request.form['user_name']).first()
+    if user is not None:
+        # add a user to the group
+        if action == 1:
+            # theres no model to use, so we have to run raw sql
+            query = "INSERT INTO subs VALUES({},{});".format(user.id, request.form['group_num'])
+            # now get all of the user data and specifiy it to be returned in jsonify obj
+            db.engine.execute(query)
+            return jsonify(
+                {'f_name' : user.f_name,'l_name' : user.l_name, 'user_name':user.username,'email': user.email}
+            )
+        elif action == 2:
+            query = "DELETE FROM subs WHERE user_id = {} AND group_id = {};".format(user.id, request.form['group_num'])
+        db.engine.execute(query)
+        return jsonify({'success': 'operation sucessful.'})
+
+    else:
+        return jsonify({'error': 'unspecified exception'})
 
 
 @app.route('/create_group/')

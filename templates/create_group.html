@@ -2,9 +2,9 @@
 
 
 {% block projectname%} MISSY {% endblock %}
-{% block content %}
 
-    <form class="form-signin" action="/process_signup/" method="POST" xmlns="http://www.w3.org/1999/html">
+{% block content %}
+    <form class="form-group-create" action="/process_create_group/" method="POST" xmlns="http://www.w3.org/1999/html">
 
         <h2 class="form-signin-heading">Create a group</h2>
         <br>
@@ -16,8 +16,8 @@
           <label for="input_desc" class="sr-only">Last name</label>
           <textarea type="text" id="input_desc" name="input_desc" class="form-control" placeholder="Description" required style="margin-bottom: 3%" />Group description</textarea>
 
-           <label for="input_admin_id" class="sr-only">Last name</label>
-          <input type="text" id="input_admin_id" name="input_admin_id" class="form-control" placeholder="Admin ID" required style="margin-bottom: 3%" >
+           <label for="input_admin_un" class="sr-only">Admin username </label>
+          <input type="text" id="input_admin_un" name="input_admin_un" class="form-control" placeholder="Admin Username" required style="margin-bottom: 3%" >
 
           <button class="btn btn-lg btn-primary btn-block" type="submit">Create group</button>
 

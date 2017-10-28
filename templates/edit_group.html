@@ -1,10 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'layout.html' %}
+{% block projectname %} GEMS {% endblock %}
+{% block content %}
+{% if isAdmin %}
+{#  Place the edit group content here  #}
+    <p>You're the admin of the group!</p>
+
+    <!-- hidden input for use with jQuery -->
+
+    <div class="container">
+
+        <div class="jumbotron" style="padding: 0px; padding-top: 1%" id="member_list">
+        <div class="row" style="padding: 0%">
+             <div class="col-4">
+                 <h5>Group Members:</h5>
+             </div>
+             <div class="col-4">
+
+             </div>
+             <div class="col-4">
+
+             </div>
+         </div>
+
+       <div class="row">
+             <div class="col-3">
+                 <h6> First name  </h6>
+             </div>
+             <div class="col-3">
+                 <h6> Last name  </h6>
+             </div>
+             <div class="col-3">
+                 <h6> User name </h6>
+             </div>
+
+           <div class="col-3">
+                 <h6> Email </h6>
+             </div>
+         </div>
+
+                {% for member in group.subscribers %}
+                     <div class="row">
+                        <div class="col-3">
+                            <p>{{ member.f_name }}</p>
+                        </div>
+
+                      <div class="col-3">
+                            <p>{{ member.l_name }}</p>
+                        </div>
+
+                      <div class="col-3">
+                            <p>{{ member.username}}</p>
+                        </div>
+
+                      <div class="col-3">
+                            <p>{{ member.email }}</p>
+                        </div>
+
+                     </div>
+                 {% endfor %}
+             </div>
+
+         </div>
+
+   <div class="jumbotron" style="padding: 0%; padding-top: 1%; padding-bottom: 1%;">
+         <div class="row">
+             <div class="col-4">
+                 <h5 style="padding-bottom: 1%;">Edit Group Members</h5>
+             </div>
+             <div class="col-4">
+
+             </div>
+             <div class="col-4">
+
+             </div>
+         </div>
+
+       <div class="row-fluid">
+           <form id="add_user_form">
+             <div class="col-4">
+                 <input type="text" name="username_add" id = "username_add" placeholder="Add Username" />
+             </div>
+             <div class="col-4">
+                 <input type="hidden" id="group_id" value="{{ group.id }}">
+                 <button type="submit" class="btn-primary btn-sm" id="add_user_btn" style="padding:2%">ADD USER</button>
+             </div>
+           </form>
+             <div class="col-4">
+
+             </div>
+         </div>
+
+       <div class="row">
+            <br>
+       </div>
+
+       <div class="row-fluid">
+           <form id="remove_user_form">
+             <div class="col-4">
+                 <input type="text" name="username_remove" id = "username_remove" placeholder="Remove Username" />
+             </div>
+             <div class="col-4">
+                 <input type="hidden" id="group_id" value="{{ group.id }}">
+                 <button class="btn-sm btn-danger" type="submit" style="padding:2%" id="remove_user_btn">REMOVE USER</button>
+             </div>
+             <div class="col-4">
+             </div>
+           </form>
+         </div>
+
+
+   </div>
+    </div>
+{% else %}
+ {# non-admin cannot edit the group detail #}
+    <p>You're not the admin of the group!</p>
+{% endif %}
+
+
+    <script src="/static/js/group_edit.js"></script>
+{% endblock %}
