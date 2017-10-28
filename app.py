@@ -67,16 +67,15 @@ def process_signup():
         # create a new user
         # group id of zero means they don't yet have a group
         new_user = User(f_name=fn,
-                        l_name=ln ,
+                        l_name=ln,
                         username=un,
                         email=em,
                         password=passw)
 
         # get the orphan group
-        orphanGroup = Group.query.filter_by(id=0).first()
+        orphan_group = Group.query.filter_by(id=0).first()
         # append the subscriber to the orphan group initially
-        orphanGroup.subscribers.append(new_user)
-
+        orphan_group.subscribers.append(new_user)
 
         db.session.add(new_user)
         db.session.commit()
@@ -107,7 +106,6 @@ def process_create_group():
         else:
             return """"<script type="text/javascript"> alert("Invalid admin username ");\
             window.location.href='/create_group/'; </script>"""
-        return redirect('/create_group/')
     else:
         return redirect('/create_group/')
 
@@ -122,10 +120,12 @@ def edit_group(group_id):
     if group is not None:
         # get the admin from the group admin_id
         print("Group admin id : {}".format(group.admin_id))
-        user = User.query.filter_by(id = group.admin_id).first()
+        user = User.query.filter_by(id=group.admin_id).first()
         # check if the user.username is equal to the currently logged in user
         print("Username from query : {}".format(user.username))
-        isAdmin = False
+        admin = User.query.filter_by(id=group.admin_id).first()
+        user = User.query.filter_by(username=current_user).first()
+        isAdmin = admin.id = user.id
         if current_user == user.username:
             isAdmin = True
         return render_template('edit_group.html', group=group, isAdmin=isAdmin)
@@ -151,13 +151,8 @@ def login():
         user = User.query.filter_by(username=uname, password=passw).first()
         # if the user query is not none, meaning it exists..
         if user is not None:
-           # print("First name from db : {}".format(user.f_name))
-           # print("Last name from db : {}".format(user.l_name))
-           # print("Username from db : {}".format(user.username))
-           # print("email from db : {}".format(user.email))
-           # print("group id from db : {}".format(user.group_id))
-           session['username'] = uname
-           return redirect("/dashboard/")
+            session['username'] = uname
+            return redirect("/dashboard/")
         else:
             return render_template('login.html', sucessval="FALSE")
     else:
@@ -177,14 +172,14 @@ def dashboard():
         # groups = user_obj.subscriptions()
         groups = user_obj.members
 
-        hasGroup = "TRUE";
+        has_group = "TRUE";
         for group in groups:
             if group.id == 0:
-                hasGroup = "False"
+                has_group = "False"
 
     else:
         user = "NOT_SET"
-    return render_template('dashboard.html', user=user_obj, hasgroup=hasGroup)
+    return render_template('dashboard.html', user=user_obj, hasgroup=has_group)
 
 
 @app.route('/process_group_edit/<int:action>', methods=['POST'])
@@ -202,7 +197,7 @@ def process_group_edit(action):
             # now get all of the user data and specifiy it to be returned in jsonify obj
             db.engine.execute(query)
             return jsonify(
-                {'f_name' : user.f_name,'l_name' : user.l_name, 'user_name':user.username,'email': user.email}
+                {'f_name': user.f_name, 'l_name': user.l_name, 'user_name': user.username, 'email': user.email}
             )
         elif action == 2:
             query = "DELETE FROM subs WHERE user_id = {} AND group_id = {};".format(user.id, request.form['group_num'])
