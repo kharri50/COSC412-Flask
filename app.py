@@ -84,6 +84,34 @@ def process_signup():
         return redirect("/login/")
 
 
+@app.route('/process_create_group/', methods=['POST'])
+def process_create_group():
+    if request.method == "POST":
+        print ("method equal to post")
+        form_data = request.form
+        group_name = form_data['input_groupname']
+        desc = form_data['input_desc']
+        admin_username = form_data['input_admin_un']
+        print("Group name : {} ".format(group_name))
+        print("Group description: {} ".format(desc))
+        print("Group admin: {}".format(admin_username))
+        # get the admin id from the inputted username
+        admin = User.query.filter_by(username=admin_username).first()
+        if admin is not None:
+            admin_id = admin.id
+            print("Admin name from query : {}".format(admin.f_name))
+            g = Group(name=group_name, description=desc, admin_id=admin_id)
+            db.session.add(g)
+            db.session.commit()
+            return redirect('/create_group/')
+        else:
+            return """"<script type="text/javascript"> alert("Invalid admin username ");\
+            window.location.href='/create_group/'; </script>"""
+        return redirect('/create_group/')
+    else:
+        return redirect('/create_group/')
+
+
 @app.route('/group/<int:group_id>')
 def show_group(group_id):
     group = Group.query.filter_by(id=group_id).first()
