@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6969b13-e42d-413c-8e17-455ccfe8b89d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/js/group_edit.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/js/jQuery.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.MD" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/models.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/signin.css" afterPath="$PROJECT_DIR$/static/signin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/style.css" afterPath="$PROJECT_DIR$/static/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/create_group.html" afterPath="$PROJECT_DIR$/templates/create_group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/edit_group.html" afterPath="$PROJECT_DIR$/templates/edit_group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/layout.html" afterPath="$PROJECT_DIR$/templates/layout.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,44 +11,6 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/app.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="2955">
-                    <caret line="198" column="23" lean-forward="false" selection-start-line="198" selection-start-column="23" selection-end-line="198" selection-end-column="23" />
-                    <folding>
-                      <marker date="1509177696758" expanded="true" signature="7351:7381" ph="INSERT INTO subs... " />
-                      <marker date="1509177696758" expanded="true" signature="7753:7776" ph="DELETE FROM " />
-                      <marker date="1509177696758" expanded="true" signature="7753:7785" ph="DELETE FROM " />
-                      <marker date="1509177696758" expanded="true" signature="7753:7792" ph="DELETE FROM " />
-                      <marker date="1509177696758" expanded="true" signature="7753:7801" ph="DELETE FROM " />
-                      <marker date="1509177696758" expanded="true" signature="7753:7804" ph="DELETE FROM " />
-                      <marker date="1509177696758" expanded="true" signature="7764:7776" ph="INSERT INTO subs... " />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="edit_group.html" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/templates/edit_group.html">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="165">
-                    <caret line="11" column="84" lean-forward="false" selection-start-line="11" selection-start-column="84" selection-end-line="11" selection-end-column="84" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
@@ -112,21 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="group_edit.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="group_edit.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/group_edit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="24" column="45" lean-forward="true" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+            <state relative-caret-position="196">
+              <caret line="21" column="59" lean-forward="false" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -150,6 +93,73 @@
             <state relative-caret-position="477">
               <caret line="83" column="1" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="83" selection-end-column="1" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit_group.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/edit_group.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="237">
+              <caret line="107" column="14" lean-forward="false" selection-start-line="107" selection-start-column="14" selection-end-line="107" selection-end-column="14" />
+              <folding>
+                <marker date="1509207454048" expanded="true" signature="308:337" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="338:1713" ph="..." />
+                <marker date="1509207454048" expanded="false" signature="389:400" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="401:619" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="434:495" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="528:549" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="582:603" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="645:1023" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="678:738" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="771:830" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="863:921" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="953:1007" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="1117:1663" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="1161:1247" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="1290:1376" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="1419:1506" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="1549:1634" ph="..." />
+                <marker date="1509207454048" expanded="false" signature="1766:1815" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="1816:3312" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="1843:2093" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="1876:1969" ph="..." />
+                <marker date="1509207454048" expanded="false" signature="1906:1925" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="2002:2023" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="2056:2077" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="2125:2660" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="2162:2590" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="2195:2321" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="2354:2571" ph="..." />
+                <marker date="1509207454048" expanded="false" signature="2523:2533" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="2623:2644" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="2686:2717" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="2749:3300" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="2789:3284" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="2822:2957" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="2990:3212" ph="..." />
+                <marker date="1509207454048" expanded="false" signature="3140:3150" ph="..." />
+                <marker date="1509207454048" expanded="true" signature="3245:3265" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="163">
+              <caret line="104" column="28" lean-forward="false" selection-start-line="104" selection-start-column="28" selection-end-line="104" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#77#0" expanded="true" />
+                <marker date="1509304042612" expanded="true" signature="7126:7156" ph="INSERT INTO subs... " />
+                <marker date="1509304042612" expanded="true" signature="7529:7552" ph="DELETE FROM " />
+                <marker date="1509304042612" expanded="true" signature="7529:7561" ph="DELETE FROM " />
+                <marker date="1509304042612" expanded="true" signature="7529:7568" ph="DELETE FROM " />
+                <marker date="1509304042612" expanded="true" signature="7529:7577" ph="DELETE FROM " />
+                <marker date="1509304042612" expanded="true" signature="7529:7580" ph="DELETE FROM " />
+                <marker date="1509304042612" expanded="true" signature="7540:7552" ph="INSERT INTO subs... " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -249,38 +259,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flask-project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flask-project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flask-project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flask-project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -506,18 +484,19 @@
     <option name="totallyTimeSpent" value="3148000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="840" height="1026" extended-state="1" />
+    <frame x="0" y="23" width="840" height="1026" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2518797" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24937344" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38865095" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2518797" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24937344" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -670,13 +649,14 @@
         <state relative-caret-position="102">
           <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
           <folding>
-            <marker date="1509177696758" expanded="true" signature="7351:7381" ph="INSERT INTO subs... " />
-            <marker date="1509177696758" expanded="true" signature="7753:7776" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7785" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7792" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7801" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7804" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7764:7776" ph="INSERT INTO subs... " />
+            <element signature="e#0#77#0" expanded="true" />
+            <marker date="1509304042612" expanded="true" signature="7126:7156" ph="INSERT INTO subs... " />
+            <marker date="1509304042612" expanded="true" signature="7529:7552" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7561" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7568" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7577" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7580" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7540:7552" ph="INSERT INTO subs... " />
           </folding>
         </state>
       </provider>
@@ -686,13 +666,14 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1509177696758" expanded="true" signature="7351:7381" ph="INSERT INTO subs... " />
-            <marker date="1509177696758" expanded="true" signature="7753:7776" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7785" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7792" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7801" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7804" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7764:7776" ph="INSERT INTO subs... " />
+            <element signature="e#0#77#0" expanded="true" />
+            <marker date="1509304042612" expanded="true" signature="7126:7156" ph="INSERT INTO subs... " />
+            <marker date="1509304042612" expanded="true" signature="7529:7552" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7561" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7568" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7577" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7580" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7540:7552" ph="INSERT INTO subs... " />
           </folding>
         </state>
       </provider>
@@ -756,13 +737,14 @@
         <state relative-caret-position="735">
           <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
           <folding>
-            <marker date="1509177696758" expanded="true" signature="7351:7381" ph="INSERT INTO subs... " />
-            <marker date="1509177696758" expanded="true" signature="7753:7776" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7785" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7792" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7801" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7804" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7764:7776" ph="INSERT INTO subs... " />
+            <element signature="e#0#77#0" expanded="true" />
+            <marker date="1509304042612" expanded="true" signature="7126:7156" ph="INSERT INTO subs... " />
+            <marker date="1509304042612" expanded="true" signature="7529:7552" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7561" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7568" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7577" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7580" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7540:7552" ph="INSERT INTO subs... " />
           </folding>
         </state>
       </provider>
@@ -918,32 +900,71 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/edit_group.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="84" lean-forward="false" selection-start-line="11" selection-start-column="84" selection-end-line="11" selection-end-column="84" />
-          <folding />
+        <state relative-caret-position="237">
+          <caret line="107" column="14" lean-forward="false" selection-start-line="107" selection-start-column="14" selection-end-line="107" selection-end-column="14" />
+          <folding>
+            <marker date="1509207454048" expanded="true" signature="308:337" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="338:1713" ph="..." />
+            <marker date="1509207454048" expanded="false" signature="389:400" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="401:619" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="434:495" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="528:549" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="582:603" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="645:1023" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="678:738" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="771:830" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="863:921" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="953:1007" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="1117:1663" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="1161:1247" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="1290:1376" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="1419:1506" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="1549:1634" ph="..." />
+            <marker date="1509207454048" expanded="false" signature="1766:1815" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="1816:3312" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="1843:2093" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="1876:1969" ph="..." />
+            <marker date="1509207454048" expanded="false" signature="1906:1925" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="2002:2023" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="2056:2077" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="2125:2660" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="2162:2590" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="2195:2321" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="2354:2571" ph="..." />
+            <marker date="1509207454048" expanded="false" signature="2523:2533" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="2623:2644" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="2686:2717" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="2749:3300" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="2789:3284" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="2822:2957" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="2990:3212" ph="..." />
+            <marker date="1509207454048" expanded="false" signature="3140:3150" ph="..." />
+            <marker date="1509207454048" expanded="true" signature="3245:3265" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/group_edit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="24" column="45" lean-forward="true" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+        <state relative-caret-position="196">
+          <caret line="21" column="59" lean-forward="false" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2955">
-          <caret line="198" column="23" lean-forward="false" selection-start-line="198" selection-start-column="23" selection-end-line="198" selection-end-column="23" />
+        <state relative-caret-position="163">
+          <caret line="104" column="28" lean-forward="false" selection-start-line="104" selection-start-column="28" selection-end-line="104" selection-end-column="28" />
           <folding>
-            <marker date="1509177696758" expanded="true" signature="7351:7381" ph="INSERT INTO subs... " />
-            <marker date="1509177696758" expanded="true" signature="7753:7776" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7785" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7792" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7801" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7753:7804" ph="DELETE FROM " />
-            <marker date="1509177696758" expanded="true" signature="7764:7776" ph="INSERT INTO subs... " />
+            <element signature="e#0#77#0" expanded="true" />
+            <marker date="1509304042612" expanded="true" signature="7126:7156" ph="INSERT INTO subs... " />
+            <marker date="1509304042612" expanded="true" signature="7529:7552" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7561" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7568" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7577" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7529:7580" ph="DELETE FROM " />
+            <marker date="1509304042612" expanded="true" signature="7540:7552" ph="INSERT INTO subs... " />
           </folding>
         </state>
       </provider>

@@ -102,7 +102,7 @@ def process_create_group():
             g = Group(name=group_name, description=desc, admin_id=admin_id)
             db.session.add(g)
             db.session.commit()
-            return render_template('/edit_group/{}'.format(g.id))
+            return redirect('/edit_group/{}'.format(g.id))
         else:
             return """"<script type="text/javascript"> alert("Invalid admin username ");\
             window.location.href='/create_group/'; </script>"""
