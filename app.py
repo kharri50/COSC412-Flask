@@ -172,10 +172,12 @@ def dashboard():
         # groups = user_obj.subscriptions()
         groups = user_obj.members
 
-        has_group = "TRUE";
+        has_group = "TRUE"
+        numGroups = 0
         for group in groups:
-            if group.id == 0:
-                has_group = "False"
+            numGroups += 1
+        if numGroups == 0:
+            has_group = "FALSE"
 
     else:
         user = "NOT_SET"

@@ -10,13 +10,37 @@
     <p>You must be logged in to see this page. </p>
 {% else %}
     <!-- the code for displaying the user dashboard goes here -->
-    <p>Welcome, {{ user.f_name }} to the user dashboard!</p>
+    <p>{{ user.f_name }}, welcome to the user dashboard!</p>
  {% if hasgroup == "TRUE" %}
     {% for group in user.members  %}
-        {{ group.name }}
-        {% for member in group.subscribers %}
-            <p>{{ member.f_name }}</p>
-        {% endfor %}
+        {% if group.id != 0 %}
+            <div class="jumbotron" style="padding: 1%">
+                <div class="col-md-8"><h4 style="text-align: left">{{group.name}}</h4></div>
+
+                <div class="row" style="padding: 2%">
+                    <div class="col-md-4">     </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8"><h6 style="text-align: left">{{group.description}}</h6></div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-md-4"><h6 style="text-align: left">Members:</h6></div>
+                </div>
+
+                {% for member in group.subscribers %}
+                <div class="row">
+                    <div class="col-md-3"><p style="text-align: left">{{member.f_name}}</p> </div>
+                    <div class="col-md-3"><p style="text-align: left">{{member.l_name}}</p> </div>
+                    <div class="col-md-3"><p style="text-align: left">{{member.username}}</p> </div>
+                    <div class="col-md-3"><p style="text-align: left">{{member.email}}</p> </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     {% endfor %}
      {% else %}
      <p>You don't have a group. Would you like to <a href="/create_group/">create one?</a></p>
@@ -30,8 +54,9 @@
 </div>
 
 <script type="application/javascript">
-
-
+    $(".jumbotron").click(function () {
+       alert("jumbotron cliked");
+    });
 </script>
 
 {% endblock %}
