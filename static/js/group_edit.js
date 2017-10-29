@@ -14,7 +14,7 @@
                 }).done(function (data) {
                     // if there is an error
                     if(data.error){
-                        alert("There was an error processing the request. \nCheck if the inputted username is valid. ");
+                        alert("Invalid username.");
                     }else if (data.already_mem)
                     {
                         alert("user is already a member in the group");
@@ -58,4 +58,14 @@
                 event.preventDefault();
         });
 
+
+
+
+          $('#group_desc_form').on('submit', function (event) {
+
+                        alert("Function called");
+                        event.preventDefault();
+          });
     });
+
+

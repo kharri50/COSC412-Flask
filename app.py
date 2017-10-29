@@ -208,6 +208,18 @@ def process_group_edit(action):
         return jsonify({'error': 'unspecified exception'})
 
 
+@app.route('/group_edit_desc/', methods=['POST'])
+def edit_group_desc():
+    group_desc = request.form['group_desc']
+    group_id = request.form['group_id']
+    print("group desc from post data : {}".format(group_desc))
+    print("group id from post data : {}".format(group_id))
+    # run the raw sql
+    sql = "UPDATE  `group` SET description = '{}' WHERE id = {};".format(group_desc, group_id)
+    db.engine.execute(sql)
+    return jsonify({'sucess': 'operation sucessful'})
+
+
 @app.route('/create_group/')
 def create_group():
     return render_template('create_group.html')
