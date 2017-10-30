@@ -73,7 +73,7 @@ def process_signup():
                         password=passw)
 
         # get the orphan group
-        orphan_group = Group.query.filter_by(id=0).first()
+        orphan_group = Group.query.filter_by(name='default group').first()
         # append the subscriber to the orphan group initially
         orphan_group.subscribers.append(new_user)
 
