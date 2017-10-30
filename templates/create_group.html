@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 
-{% block projectname%} MISSY {% endblock %}
+{% block projectname%} GEMS {% endblock %}
 
 {% block content %}
     <form class="form-group-create" action="/process_create_group/" method="POST" xmlns="http://www.w3.org/1999/html">
@@ -17,7 +17,7 @@
           <textarea type="text" id="input_desc" name="input_desc" class="form-control" placeholder="Description" required style="margin-bottom: 3%" />Group description</textarea>
 
            <label for="input_admin_un" class="sr-only">Admin username </label>
-          <input type="text" id="input_admin_un" name="input_admin_un" class="form-control" placeholder="Admin Username" required style="margin-bottom: 3%" >
+          <input type="text" id="input_admin_un" name="input_admin_un" class="form-control" placeholder="{{ username }}" value="{{ username }}" required style="margin-bottom: 3%" >
 
           <button class="btn btn-lg btn-primary btn-block" type="submit">Create group</button>
 

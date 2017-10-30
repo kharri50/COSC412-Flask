@@ -8,8 +8,8 @@ app.config.from_pyfile('config.cfg')
 
 # make a database object and register it to the application
 db = SQLAlchemy(app)
-# create a new table to handle group subscriptions
 
+# create a new table to handle group subscriptions
 subs = db.Table('subs',
                 db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
                 db.Column('group_id', db.Integer, db.ForeignKey('group.id'))
@@ -224,12 +224,12 @@ def edit_group_desc():
 
 @app.route('/create_group/')
 def create_group():
-    return render_template('create_group.html')
+    return render_template('create_group.html', username=session['username'])
 
 
 @app.route('/group_detail/<int:g_id>')
 def group_detail(g_id):
-    return render_template("group_detail.html", group_num = g_id)
+    return render_template("project_view.html", group_num = g_id)
 
 
 if __name__ == '__main__':
