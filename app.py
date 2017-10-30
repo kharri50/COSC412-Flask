@@ -227,6 +227,11 @@ def create_group():
     return render_template('create_group.html')
 
 
+@app.route('/group_detail/<int:g_id>')
+def group_detail(g_id):
+    return render_template("group_detail.html", group_num = g_id)
+
+
 if __name__ == '__main__':
     app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
     app.run(debug=True)

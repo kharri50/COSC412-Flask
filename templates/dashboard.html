@@ -15,6 +15,8 @@
     {% for group in user.members  %}
         {% if group.id != 0 %}
             <div class="jumbotron" style="padding: 1%">
+                <input type="hidden" class="group_id" id="group_{{ group.id }}" value="{{ group.id }}">
+
                 <div class="col-md-8"><h4 style="text-align: left">{{group.name}}</h4></div>
 
                 <div class="row" style="padding: 2%">
@@ -55,7 +57,10 @@
 
 <script type="application/javascript">
     $(".jumbotron").click(function () {
-       alert("jumbotron cliked");
+        var gid = $(this).find(".group_id");
+        //alert(gid.val());
+        window.location.href = "/group_detail/"+gid.val();
+
     });
 </script>
 
