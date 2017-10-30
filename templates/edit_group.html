@@ -13,6 +13,10 @@
 
                 <h5>Group Description:</h5>
 
+                <div class="alert alert-success" id="desc_success">
+                    <strong> Group description changed sucessfully </strong>
+                </div>
+
                     <input type="hidden" id="group_id" value="{{ group.id }}">
                     <textarea style="width: 75% " id="group_desc_ta">{{ group.description }}</textarea>
                     <br>
@@ -24,26 +28,35 @@
                 external javascript file, so whatever. This will execute an ajax call to
                 update the group description -->
                 <script type="text/javascript">
-                    $('#btn_edit_desc').on('click', function (event) {
+                    $(document).ready( function () {
 
-                        var username = $('#username_remove').val();
-                        jQuery.ajax({
-                            data: {
-                                group_desc: $('#group_desc_ta').val(),
-                                group_id : $('#group_id').val()
-                            },
-                            type: 'POST',
-                            url: '/group_edit_desc/'
-                        }).done(function (data) {
-                            // if there is an error
-                            if (data.error) {
-                                alert("There was an error processing the request. \nCheck if the inputted username is valid. ");
-                            } else {
-                                //alert("Group addition sucessfull!");
-                                window.location.reload()
-                            }
+                        $('#desc_success').hide();
+
+                        $('#btn_edit_desc').on('click', function (event) {
+
+                            var username = $('#username_remove').val();
+                            jQuery.ajax({
+                                data: {
+                                    group_desc: $('#group_desc_ta').val(),
+                                    group_id : $('#group_id').val()
+                                },
+                                type: 'POST',
+                                url: '/group_edit_desc/'
+                            }).done(function (data) {
+                                // if there is an error
+                                if (data.error) {
+                                    alert("There was an error processing the request. \nCheck if the inputted username is valid. ");
+                                } else {
+                                    //console.log("description changed.");
+                                    //window.location.reload()
+                                    // show that the change was sucessful.
+                                    $('#desc_success').show();
+
+                                }
+                            });
+                            event.preventDefault();
                         });
-                        event.preventDefault();
+
                     });
                 </script>
 
