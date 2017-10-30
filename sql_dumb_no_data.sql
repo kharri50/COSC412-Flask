@@ -43,7 +43,7 @@ CREATE TABLE `group` (
   `description` text,
   `admin_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=big5;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +106,7 @@ CREATE TABLE `user` (
   `email` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=big5;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -117,5 +117,5 @@ CREATE TABLE `user` (
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
+INSERT INTO `group` VALUES (0, 'default group', 'group contains users with no group', 0);
 -- Dump completed on 2017-10-30 10:30:38
