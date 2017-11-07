@@ -43,6 +43,42 @@ class Group(db.Model):
                               lazy='dynamic')
 
 
+# the following is a definition for a project, which belongs to a group.
+# technically, this mirrors the structure of the group, but it's not an atomic.
+class Project(db.Model):
+    id = db.Column(db.INTEGER, primary_key=True, nullable=False)
+    name = db.Column(db.VARCHAR(55), nullable=False)
+    description = db.Column(db.TEXT, nullable=True)
+    admin_id = db.Column(db.INTEGER)
+    # the following makes a lazy backref to the tasks
+    tasks = db.relationship('Task',
+                            backref=db.backref('project'),
+                            lazy='dynamic')
+
+# the following is the definition for the tasks which are in a project.
+# it's a one to many model. There will be many tasks per one group.
+#
+# Each task must have the following:
+#   task_id
+#   project_id BACKREF
+#   user_id    BACKREF
+#   name
+#   description
+#   time estimate
+#   status (ENUM STRING)
+#   file(not needed for prototype implementation) SKIP
+#   revisions (not needed for prototype implementation) SKIP
+
+class Task(db.Model):
+    id = db.Column(db.INTEGER, primary_key=True, nullable=False)
+    name = db.Column(db.VARCHAR(255), nullable=False)
+    description = db.Column(db.TEXT, nullable=True)
+    time_estimate = db.Column(db.FLOAT, nullable=False)
+    status = db.Column(db.VARCHAR(25), nullable=False)
+    project_id = db.Column(db.INTEGER, db.ForeignKey('project.id'))
+
+
+
 @app.route('/')
 def index():
     return render_template("index.html")
