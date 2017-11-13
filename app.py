@@ -54,6 +54,8 @@ class Project(db.Model):
     tasks = db.relationship('Task',
                             backref=db.backref('project'),
                             lazy='dynamic')
+    group_id = db.Column(db.INTEGER, db.ForeignKey('group.id'))
+
 
 # the following is the definition for the tasks which are in a project.
 # it's a one to many model. There will be many tasks per one group.
@@ -69,6 +71,7 @@ class Project(db.Model):
 #   file(not needed for prototype implementation) SKIP
 #   revisions (not needed for prototype implementation) SKIP
 
+
 class Task(db.Model):
     id = db.Column(db.INTEGER, primary_key=True, nullable=False)
     name = db.Column(db.VARCHAR(255), nullable=False)
@@ -76,7 +79,6 @@ class Task(db.Model):
     time_estimate = db.Column(db.FLOAT, nullable=False)
     status = db.Column(db.VARCHAR(25), nullable=False)
     project_id = db.Column(db.INTEGER, db.ForeignKey('project.id'))
-
 
 
 @app.route('/')
