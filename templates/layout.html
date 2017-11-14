@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Narrow Jumbotron Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+
+    <!-- Custom styles for this template -->
+      {% block customCSS %}<link href="/static/style.css" rel="stylesheet"> {% endblock customCSS %}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+   {% block react %}
+        <script src="https://unpkg.com/react@15.6.1/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15.6.1/dist/react-dom.js"></script>
+   {% endblock %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  </head>
+
+  <body>
+
+
+    <div class="container">
+      <div class="header clearfix">
+      {% block nav %}  <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+
+              <li class="nav-item">
+                  <a>IF YOU WANT TO CHANGE THE NAV BAR, DO IT HERE</a>
+              </li>
+          </ul>
+        </nav>
+          {% endblock nav %}
+        <h3 class="text-muted">{% block projectname %} fillername {% endblock %}</h3>
+      </div>
+
+      {% block content %}
+
+      <div class="jumbotron">
+        <h1 class="display-3">{% block jumboHeading %} {% endblock %}</h1>
+        <p class="lead">{% block welcomeMessage %}Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p> {% endblock welcomeMessage %}
+        <p><a class="btn btn-lg btn-success" href="/signup/" role="button">Sign up today</a></p>
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+
+        <!-- General form for overriding the template subheadings -->
+            {% block heading1 %}
+
+                 {% block heading1Title %}
+                     Subheading
+                 {% endblock heading1Title %}
+
+                {% block heading1Content %}
+                    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+                {% endblock heading1Content %}
+
+            {% endblock heading1 %}
+
+        <!-- Example of overriding a second heading -->
+            {% block heading2 %}
+
+                 {% block heading2Title %}
+                     Subheading
+                 {% endblock heading2Title %}
+
+                {% block heading2Content %}
+                    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+                {% endblock heading2Content %}
+
+            {% endblock heading2 %}
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+
+        <div class="col-lg-6">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; Company 2017</p>
+      </footer>
+
+    </div> <!-- /container -->
+    {% endblock content %}
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="/static/js/jQuery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+  </body>
+</html>
