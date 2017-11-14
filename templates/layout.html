@@ -1,120 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+<html>
+<head>
+<style>
+body {background-color: lightgray;}
 
-    <title>Narrow Jumbotron Template for Bootstrap</title>
+h1	{width: 75%; height: 20px; display: inline-block;}
 
-    <!-- Bootstrap core CSS -->
+h1 a {text-decoration: none; color: white; padding: 10px}
 
-    <!-- Custom styles for this template -->
-      {% block customCSS %}<link href="/static/style.css" rel="stylesheet"> {% endblock customCSS %}
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+h1 a:hover {color: blue;}
 
-   {% block react %}
-        <script src="https://unpkg.com/react@15.6.1/dist/react.js"></script>
-        <script src="https://unpkg.com/react-dom@15.6.1/dist/react-dom.js"></script>
-   {% endblock %}
+h1 a:focus {color: red;}
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+.topBar	{
+	background-color:black;
+	width: 100%;
+	border: 1px solid black;
+}
 
-  </head>
+.dropbtn {
+	color: white;
+	background-color: black;
+}
 
-  <body>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown .dropbtn {
+	padding: 39px 16px;
+	border: none;
+	outline: none;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+	background-color: gray;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: gray;
+    min-width: 92px;
+    overflow: auto;
+    z-index: 1;
+}
+
+.dropdown-content a:hover {
+	background-color: #7c6356;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border: 1px solid black;
+}
+
+.show {display:block;}
+
+.login {
+	display: inline-block;
+	padding: 37px 16px;
+	border: none;
+	outline: none;
+	text-decoration: none;
+	color: white;
+}
+
+.login:hover {
+	background-color: gray;
+}
+
+.content {
+	background-color: lightblue;
+	height: 600px;
+	width: 99%;
+	margin: auto;
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+<div class = "topBar">
+	<h1><a href="test.html">GEMS</a></h1>
+	<div class="dropdown">
+		<button onclick="navButton()" class="dropbtn">Navigation</button>
+		<div id="myDropdown" class="dropdown-content">
+			<a href="#home">Home</a>
+			<a href="#about">About</a>
+			<a href="#etc">Etc</a>
+		</div>
+	</div>
+	<a href="#login" class="login">Login/Username</a>
+</div>
+
+<div class="content">
+	<h2>Conetent of the page</h2>
+	<p>Welcome to GEMS!</p>
+</div>
+
+</body>
 
 
-    <div class="container">
-      <div class="header clearfix">
-      {% block nav %}  <nav>
-          <ul class="nav nav-pills float-right">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
-        </nav>
-          {% endblock nav %}
-        <h3 class="text-muted">{% block projectname %} fillername {% endblock %}</h3>
-      </div>
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function navButton() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
 
-      {% block content %}
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
 
-      <div class="jumbotron">
-        <h1 class="display-3">{% block jumboHeading %} {% endblock %}</h1>
-        <p class="lead">{% block welcomeMessage %}Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p> {% endblock welcomeMessage %}
-        <p><a class="btn btn-lg btn-success" href="/signup/" role="button">Sign up today</a></p>
-      </div>
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 
-      <div class="row marketing">
-        <div class="col-lg-6">
 
-        <!-- General form for overriding the template subheadings -->
-            {% block heading1 %}
-
-                 {% block heading1Title %}
-                     Subheading
-                 {% endblock heading1Title %}
-
-                {% block heading1Content %}
-                    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-                {% endblock heading1Content %}
-
-            {% endblock heading1 %}
-
-        <!-- Example of overriding a second heading -->
-            {% block heading2 %}
-
-                 {% block heading2Title %}
-                     Subheading
-                 {% endblock heading2Title %}
-
-                {% block heading2Content %}
-                    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-                {% endblock heading2Content %}
-
-            {% endblock heading2 %}
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-
-        <div class="col-lg-6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-      </div>
-
-      <footer class="footer">
-        <p>&copy; Company 2017</p>
-      </footer>
-
-    </div> <!-- /container -->
-    {% endblock content %}
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-    <script src="/static/js/jQuery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-
-  </body>
+</body>
 </html>
