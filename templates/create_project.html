@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <form action="/process_project_create/" method="POST">
+
+  <div class="form-group">
+    <label for="projectName">Project Name</label>
+    <input type="text" class="form-control" name="project_name" id="projectName_input" aria-describedby="project_name" placeholder="Enter a project name">
+  </div>
+  <div class="form-group">
+    <label for="projectDesc">Description</label>
+    <input type="text" class="form-control" id="project_desc" name = "project_desc" placeholder="Project Description">
+  </div>
+
+
+        {#    automatically pass the admin id so we don't users messing up #}
+        <div class="form-check">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Group
+          </button>
+        <input type="hidden" id="selected_group" name="selected_group" value="none">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               {% for group in admin.members %}
+
+                   <a class="dropdown-item group_drop" id="{{ group.name }}_select" onclick="change_select();">
+                       {{ group.name }}
+                       <input type="hidden" class="group_id" name = "group_name" id="group_{{ group.name }}" value="{{ group.name }}"> </a>
+
+                {% endfor %}
+          </div>
+        </div>
+
+        <br>
+      <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+        <input type="hidden" name="admin_id" id = "admin_id" value="{{ admin.id }}"/>
+    <p>Admin id : {{ admin.id }}</p>
+    </form>
+
+    {#    js to alter which button is selected..#}
+
+
+<script type="application/javascript">
+     $(".group_drop").click(function () {
+        var gid = $(this).find(".group_id");
+        //alert(gid.val());
+       // window.location.href = "/group_detail/"+gid.val();
+        var  dropdownMenuButton = document.getElementById("dropdownMenuButton");
+        var selected_group = $('#selected_group');
+        dropdownMenuButton.innerHTML = gid.val();
+        selected_group.value = gid.val();
+
+        console.log("Selected group: "+selected_group.value);
+    });
+</script>
+
+{% endblock %}

@@ -111,7 +111,7 @@ def process_signup():
                         password=passw)
 
         # get the orphan group
-        orphan_group = Group.query.filter_by(name='default group').first()
+        orphan_group = Group.query.filter_by(name='orphan group').first()
         # append the subscriber to the orphan group initially
         orphan_group.subscribers.append(new_user)
 
@@ -267,8 +267,41 @@ def create_group():
 
 @app.route('/group_detail/<int:g_id>')
 def group_detail(g_id):
-    return render_template("project_view.html", group_num = g_id)
+    # check if the current user is the admin of the group for the detail page
+    is_admin = False
+    user = session['username']
+    # print("username from detail url : {}".format(user))
+    # get the username from the group admin
+    group_obj = Group.query.filter_by(id=g_id).first()
+    user_obj = User.query.filter_by(username=user).first()
+    if group_obj.admin_id == user_obj.id:
+        is_admin = True
+    print("Group name from group detail : {}".format(group_obj.name))
+    return render_template("group_detail.html", group=group_obj, admin_status=is_admin)
 
+
+@app.route('/process_project_create/', methods=['POST'])
+def create_project():
+    group_name = request.form['group_name']
+    project_name = request.form['project_name']
+    project_desc = request.form['project_desc']
+    admin = request.form['admin_id']
+    group = Group.query.filter_by(name=group_name).first()
+    print("Group name from python: {}".format(group_name))
+    print("Project name from python: {}".format(project_name))
+    print("Project desc from python: {}".format(project_desc))
+    print("ADMIN ID from python: {}".format(admin))
+    proj = Project(name=project_name, description=project_desc, admin_id=admin, group_id=group.id)
+    db.session.add(proj)
+    db.session.commit()
+    return redirect('project_create')
+
+
+@app.route('/project_create/<int:gro_id>')
+def project_create(gro_id):
+    group_obj = Group.query.filter_by(id=gro_id).first()
+    adminObj = User.query.filter_by(id=group_obj.admin_id).first()
+    return render_template('create_project.html', admin=adminObj)
 
 if __name__ == '__main__':
     app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
