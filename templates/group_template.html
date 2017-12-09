@@ -1,19 +1,5 @@
-{% extends 'layout.html' %}
 
-{% block projectname %} Dashboard {% endblock projectname %}
-
-
-{% block content %}
-
-
-{% if username == "NOT_SET" %}
-    <p>You must be logged in to see this page. </p>
-{% else %}
-    <!-- the code for displaying the user dashboard goes here -->
-    <p>{{ user.f_name }}, welcome to the user dashboard!</p>
- {% if hasgroup == "TRUE" %}
-    {% for group in user.members  %}
-        {% if group.name != "orphan group" %}
+   {% if group.name != "orphan group" %}
             <div class="jumbotron" style="padding: 1%">
                 <input type="hidden" class="group_id" id="group_{{ group.id }}" value="{{ group.id }}">
 
@@ -43,25 +29,4 @@
                 {% endfor %}
             </div>
         {% endif %}
-    {% endfor %}
-     {% else %}
-     <p>You don't have a group. Would you like to <a href="/create_group/">create one?</a></p>
- {% endif %}
 
-{% endif %}
-
-<!-- creating a new element that can be modified by reactJS -->
-<div class="container" id = 'reactContainer'>
-
-</div>
-
-<script type="application/javascript">
-    $(".jumbotron").click(function () {
-        var gid = $(this).find(".group_id");
-        //alert(gid.val());
-        window.location.href = "/group_detail/"+gid.val();
-
-    });
-</script>
-<a href="/create_group/">Create A Group</a></p>
-{% endblock %}

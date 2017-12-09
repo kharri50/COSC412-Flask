@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+
+{% block projectname %} Group Detail {% endblock projectname %}
+
+{% block content %}
+
+
+<h1>
+   {{  group.name.upper() }} {{ project.id }}
+</h1>
+    <hr>
+{# This is for the admin page, but we're going to use
+    a flex - bootstrap layout to define the rows
+    and columns of the tasks. #}
+
+{#    check if they've got a project assigned to the group #}
+    {%  if group.project_id == -1  %}
+        {# They can only create a project if they're the admin #}
+            {%   if admin_status == True  %}
+                <strong style="padding-bottom: 1%"> You don't currently have a project for this group. Would you like to create one? </strong>
+                {% include "create_project_form.html" %}
+            {% endif %}
+        {% endif %}
+
+    {# This is the case where the group does have a project..   #}
+
+    {% if group.project_id != -1 %}
+        Project ID : {{ project.id }}
+        <br>
+        <br>
+
+
+        <div class="container">
+
+          <div class="row" style="border-bottom-style: groove; border-top-style: groove">
+            <div class="col-sm" style="border-right-style: groove; border-left-style: groove">
+                <center> <strong> TO DO  </strong></center>
+            </div>
+            <div class="col-sm" style="border-right-style: groove;">
+                <center> <strong> DOING  </strong> </center>
+            </div>
+            <div class="col-sm" style="border-right-style: groove">
+                <center> <strong>  DONE  </strong> </center>
+            </div>
+          </div>
+        </div>
+
+{#        now, get the number of task in the project #}
+
+        {% if admin_status == True %}
+            <br>
+            <hr>
+         Okay, the user is the admin. Show create task dialog.
+            <br>
+            <br>
+
+            <h4>Create a New Task</h4>
+
+<br>
+            <form action="/process_task_create/" method="POST">
+
+                            <input type = "hidden" id="fuck" name="fuck">
+                            <input type = "hidden" id="fuck_2" name="fuck_2" value="{{ group.project.id }} {{ project.id }}">
+                            <input type="hidden" name="gid" id = "gid" value="{{ group.id }}">
+
+
+            <div class="form-group">
+                <label for="taskName">Task Name</label>
+                 <input type="text" class="form-control" name="task_name" id="taskName_input" aria-describedby="task_name" placeholder="Enter a task name">
+                </div>
+            <br>
+                <div class="form-group">
+                    <label for="taskDesc">Task Description</label>
+                    <input type="text" class="form-control" id="task_desc" name = "task_desc" placeholder="Task Description">
+                </div>
+            <br>
+
+    <label for="timeEst">Time Estimate (HRS)</label>
+    <input type="text" class="form-control" id="time_est" name = "time_est" placeholder=1>
+
+            <br>
+
+        {#    automatically pass the admin id so we don't users messing up #}
+        <label for="taskDesc">Assign Task</label>
+            <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select a group member
+          </button>
+        <input type="hidden" id="selected_group" name="selected_group" value="none">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+               {% for members in group.subscribers %}
+                   <a class="dropdown-item group_drop" id="{{ members.id }}_select" onclick="change_select();">
+                       {{ members.f_name }} {{ members.l_name }}
+                       <input type="hidden" class="member_id" name = "member_name" id="member_name" value="{{ members.f_name }} {{ members.l_name }}"> </a>
+                {% endfor %}
+          </div>
+        </div>
+
+                <br>
+      <button type="submit" class="btn btn-primary">Create Task</button>
+        </div>
+
+                {# hidden input so we can pass the project to the form creation #}
+
+                <input type="hidden" name="project_id" id = "project_id" value="{{ project.id }}"/>
+
+            </form>
+
+        {% endif %}
+    {% endif %}
+<br>
+<hr>
+
+<h1>
+ Group view
+</h1>
+
+{# This includes the template so we don't have
+   to continiously rewrite the code. DRY. #}
+    {% include "group_template.html" %}
+
+
+<script type="application/javascript">
+
+     $(".group_drop").click(function () {
+        var gid = $(this).find(".member_id");
+              //   alert(gid.val())
+
+       // window.location.href = "/group_detail/"+gid.val();
+        var  dropdownMenuButton = document.getElementById("dropdownMenuButton");
+        var selected_group = $('#selected_group');
+        dropdownMenuButton.innerHTML = gid.val();
+        selected_group.value = gid.val();
+
+        console.log("Selected group: "+selected_group.value);
+
+        // now change the group name in the hidden input
+         $("#group_name").val(selected_group.value);
+         $("#fuck").val(gid.val());
+
+    });
+
+</script>
+
+
+{% endblock content %}

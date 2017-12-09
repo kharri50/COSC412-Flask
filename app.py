@@ -28,6 +28,9 @@ class User(db.Model):
                                     secondary=subs,
                                     backref=db.backref('subscribers'),
                                     lazy='dynamic')
+    Tasks = db.relationship('Task',
+                            backref=db.backref('Tasks'),
+                            lazy='dynamic')
 
 
 class Group(db.Model):
@@ -42,6 +45,9 @@ class Group(db.Model):
                               backref=db.backref('members'),
                               lazy='dynamic')
 
+    # project_id = db.Column(db.INTEGER, db.ForeignKey('project.id'))
+    project = db.relationship("Project", backref=db.backref('Project'), lazy='dynamic')
+
 
 # the following is a definition for a project, which belongs to a group.
 # technically, this mirrors the structure of the group, but it's not an atomic.
@@ -51,6 +57,7 @@ class Project(db.Model):
     description = db.Column(db.TEXT, nullable=True)
     admin_id = db.Column(db.INTEGER)
     # the following makes a lazy backref to the tasks
+
     tasks = db.relationship('Task',
                             backref=db.backref('project'),
                             lazy='dynamic')
@@ -79,6 +86,7 @@ class Task(db.Model):
     time_estimate = db.Column(db.FLOAT, nullable=False)
     status = db.Column(db.VARCHAR(25), nullable=False)
     project_id = db.Column(db.INTEGER, db.ForeignKey('project.id'))
+    user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
 
 
 @app.route('/')
@@ -276,25 +284,88 @@ def group_detail(g_id):
     user_obj = User.query.filter_by(username=user).first()
     if group_obj.admin_id == user_obj.id:
         is_admin = True
+
+
     print("Group name from group detail : {}".format(group_obj.name))
-    return render_template("group_detail.html", group=group_obj, admin_status=is_admin)
+    # now I'm going to get the project *if there is one, and then pass it with the url *
+    project_obj = Project.query.filter_by(group_id=group_obj.id).first()
+    # just need this line so the world doesn't end
+    adminObj = User.query.filter_by(id=group_obj.admin_id).first()
+
+    return render_template("group_detail.html", group=group_obj, admin_status=is_admin, project=project_obj, admin = adminObj)
 
 
 @app.route('/process_project_create/', methods=['POST'])
 def create_project():
-    group_name = request.form['group_name']
+    group_name = request.form['gn']
     project_name = request.form['project_name']
     project_desc = request.form['project_desc']
     admin = request.form['admin_id']
+
+    print("GROUP NAME FROM PROCESS : {}".format(group_name))
     group = Group.query.filter_by(name=group_name).first()
-    print("Group name from python: {}".format(group_name))
+
+    # print("Group ID from python : {}" .format(group.id)) # this causes issues BIG ISSUES
+    # print("Group name from python: {}".format(group_name)) # this is not right
     print("Project name from python: {}".format(project_name))
     print("Project desc from python: {}".format(project_desc))
     print("ADMIN ID from python: {}".format(admin))
-    proj = Project(name=project_name, description=project_desc, admin_id=admin, group_id=group.id)
+
+    groupObj  = Group.query.filter_by(name=group_name).first()
+
+    proj = Project(name=project_name, description=project_desc, admin_id=admin, group_id=groupObj.id)
     db.session.add(proj)
     db.session.commit()
-    return redirect('project_create')
+
+    # make a new query that will update the group id with the project id
+    # get the project id that was just created
+    project_obj = Project.query.filter_by(group_id = group.id).first()
+
+    updateQuery = "update `group` set project_id = {} WHERE id  = {};".format(project_obj.id, groupObj.id)
+
+    db.engine.execute(updateQuery)
+
+    # return where you think its appropriate
+    return redirect('group_detail/{}'.format(groupObj.id))
+
+
+@app.route('/process_task_create/', methods=['POST'])
+def create_task():
+    task_name = request.form['task_name']
+    task_description = request.form['task_desc']
+    assigned_member = request.form['fuck']
+    time_est = request.form['time_est']
+    project_id = request.form['fuck_2']
+
+    group_id = request.form['gid']
+    names = assigned_member.split()
+
+    print("first name from python :{}space".format(names[0]))
+    print("last name from python :{}space".format(names[1]))
+
+    userObj = User.query.filter_by(f_name=names[0],l_name=names[1]).first()
+
+    print("PRINTING FROM USER OBJ : {}".format(userObj.f_name))
+
+    print("task ID from python : {}".format(task_name))
+    print("Task DESC from py : {}".format(task_description))
+    print("Assigned mem from py : {}".format(assigned_member))
+
+#      initially the status will be "TO DO"
+#      create a new task obj
+
+    tsk = Task(name=task_name,
+                description = task_description,
+                time_estimate=time_est,
+                status="TODO",
+                project_id=project_id,
+                user_id=userObj.id)
+
+    db.session.add(tsk)
+    db.session.commit()
+
+    return redirect('group_detail/{}'.format(group_id))
+
 
 
 @app.route('/project_create/<int:gro_id>')

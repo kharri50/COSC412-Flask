@@ -1,14 +1,8 @@
-{% extends 'layout.html' %}
-
-{% block content %}
-    <form action="/process_project_create/" method="POST">
-
-          <input type = "hidden" name="gn" id = "gn" value=""/>
-
+<br>
+<br>
+<form action="/process_project_create/" method="POST">
 
   <div class="form-group">
-
-
     <label for="projectName">Project Name</label>
     <input type="text" class="form-control" name="project_name" id="projectName_input" aria-describedby="project_name" placeholder="Enter a project name">
   </div>
@@ -16,6 +10,8 @@
     <label for="projectDesc">Description</label>
     <input type="text" class="form-control" id="project_desc" name = "project_desc" placeholder="Project Description">
   </div>
+
+
 
 
         {#    automatically pass the admin id so we don't users messing up #}
@@ -30,7 +26,7 @@
 
                    <a class="dropdown-item group_drop" id="{{ group.name }}_select" onclick="change_select();">
                        {{ group.name }}
-                       <input type="hidden" class="group_id" name = "group_name" id="group_{{ group.name }}" value="{{ group.name }}"> </a>
+                       <input type="hidden" class="group_id" name = "group_name" id="group_name" value="{{ group.name }}"> </a>
 
                 {% endfor %}
           </div>
@@ -41,7 +37,6 @@
         </div>
 
         <input type="hidden" name="admin_id" id = "admin_id" value="{{ admin.id }}"/>
-    <p>Admin id : {{ admin.id }}</p>
     </form>
 
     {#    js to alter which button is selected..#}
@@ -58,9 +53,12 @@
         selected_group.value = gid.val();
 
         console.log("Selected group: "+selected_group.value);
-         $("#gn").val((gid.val()));
-         alert($("#gn").val())
+
+        // now change the group name in the hidden input
+         $("#group_name").val(selected_group.value);
+
+         // change val of hidden input for m_name
+         $("#m_name").value = gid;
+
     });
 </script>
-
-{% endblock %}
