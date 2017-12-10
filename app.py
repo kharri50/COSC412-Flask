@@ -34,8 +34,7 @@ class User(db.Model):
 
     # backref for the user image. Makes it easier to query, but
     # it's certainly not necessary
-    image = db.relationship("userImage", backref=db.backref('userImage'), lazy='dynamic')
-
+    image = db.relationship("UserImage", backref=db.backref('UserImage'), lazy='dynamic')
 
 
 class Group(db.Model):
@@ -95,11 +94,11 @@ class Task(db.Model):
 
 
 # add the model for user images here
-class userImage(db.Model):
-    user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
-    imagePath = db.Column(db.VARCHAR)
+class UserImage(db.Model):
+    imgId = db.Column(db.INTEGER, primary_key=True, nullable=False)
+    uid = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+    imagePath = db.Column(db.VARCHAR(255), nullable=False)
     # you can add a back ref here in the user table for the image
-
 
 
 
