@@ -43,6 +43,25 @@
                 <center> <strong>  DONE  </strong> </center>
             </div>
           </div>
+
+        {% for task in project.tasks  %}
+
+
+            <div class="row" style="border-bottom-style: groove; border-top-style: groove">
+            <div class="col-sm" style="border-right-style: groove; border-left-style: groove">
+                <center> <strong> TO DO  </strong></center>
+            </div>
+            <div class="col-sm" style="border-right-style: groove;">
+                <center> <strong> DOING  </strong> </center>
+            </div>
+            <div class="col-sm" style="border-right-style: groove">
+                <center> <strong>  DONE  </strong> </center>
+            </div>
+          </div>
+
+
+        {% endfor %}
+
         </div>
 
 {#        now, get the number of task in the project #}

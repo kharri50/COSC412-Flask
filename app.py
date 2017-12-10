@@ -32,6 +32,11 @@ class User(db.Model):
                             backref=db.backref('Tasks'),
                             lazy='dynamic')
 
+    # backref for the user image. Makes it easier to query, but
+    # it's certainly not necessary
+    image = db.relationship("userImage", backref=db.backref('userImage'), lazy='dynamic')
+
+
 
 class Group(db.Model):
     id = db.Column(db.INTEGER, primary_key=True, nullable=False)
@@ -89,9 +94,41 @@ class Task(db.Model):
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
 
 
+# add the model for user images here
+class userImage(db.Model):
+    user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+    imagePath = db.Column(db.VARCHAR)
+    # you can add a back ref here in the user table for the image
+
+
+
+
 @app.route('/')
 def index():
     return render_template("index.html")
+
+
+@app.route('/user_profile/')
+def user_profile():
+    if 'username' in session:
+        user = session['username']
+        print("user from session: {}".format(user))
+        # get the group that they're in
+        # first get the user
+        user_obj = User.query.filter_by(username=user).first()
+        print("Username from db query : {}".format(user_obj.f_name))
+        # now find the group based on the association
+        # groups = user_obj.subscriptions()
+        groups = user_obj.members
+        has_group = "TRUE"
+        numGroups = 0
+        for group in groups:
+            numGroups += 1
+        if numGroups == 0:
+            has_group = "FALSE"
+    else:
+        user = "NOT_SET"
+    return render_template("user_profile.html", user=user_obj)
 
 
 @app.route('/signup/')

@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block projectname %} Profile {% endblock projectname %}
+{% block content %}
+{% if username == "NOT_SET" %}
+    <p>You must be logged in to see this page. </p>
+{% else %}
+    <!-- the code for displaying the user profile goes here -->
+    <div class="card">
+        <img src="../static/img/matt.jpg" alt="John" style="width: 100%">
+        <h1>{{ user.f_name + " " + user.l_name }}</h1>
+        <p class="title">CEO & Founder, Example</p>
+        <p>Towson University</p>
+        <p><button>Contact</button></p>
+    </div>
+    <div class="profile_info">
+        <p><i class="fa fa-user" aria-hidden="true"></i> Username: {{ user.username }} </p>
+        <p><i class="fa fa-envelope" aria-hidden="true"></i> Email: {{ user.email }} </p>
+        <p><i class="fa fa-users" aria-hidden="true"></i> Groups: </p>
+    </div>
+{% endif %}
+{% endblock %}
