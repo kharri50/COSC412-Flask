@@ -42,25 +42,73 @@
             <div class="col-sm" style="border-right-style: groove">
                 <center> <strong>  DONE  </strong> </center>
             </div>
+
+            {#   beginning heading of task table #}
+
+
           </div>
-
-        {% for task in project.tasks  %}
-
 
             <div class="row" style="border-bottom-style: groove; border-top-style: groove">
+
             <div class="col-sm" style="border-right-style: groove; border-left-style: groove">
-                <center> <strong> TO DO  </strong></center>
+                {# this will represent the to-do column #}
+                {% for task in project.tasks  %}
+                    {% if task.status=="TODO" %}
+
+                        <div class="card" style="width: 20rem; margin: 3%;">
+                            <div class="card-body" style="margin: 2%">
+                                <h5 class="card-title" style="padding-top: 1%; padding-left: 1%;">{{ task.name }}</h5>
+                                <h6>Task Description:</h6>
+                                <p class="card-text" style="padding-left: 1%">{{ task.description }}</p>
+                                <h6>Assigned to :  {{ task.user.f_name }} {{ task.user.l_name }} </h6>
+                                <p style="font-weight: 600; display: inline;" >Remaining time : </p> <p style="display:inline;"> {{ task.time_estimate }} (hrs) </p>
+                            </div>
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+
             </div>
+
+
             <div class="col-sm" style="border-right-style: groove;">
-                <center> <strong> DOING  </strong> </center>
+                      {# this will represent the DOING column #}
+                {% for task in project.tasks  %}
+                    {% if task.status=="DOING" %}
+                    <div class="card" style="width: 20rem; margin: 3%;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="padding-top: 1%; padding-left: 1%;">{{ task.name }}</h5>
+                                <h6>Task Description:</h6>
+                                <p class="card-text" style="padding-left: 1%">{{ task.description }}</p>
+                                <h6>Assigned to :  {{ task.user.f_name }} {{ task.user.l_name }} </h6>
+                                <p style="font-weight: 600; display: inline;" >Remaining time : </p> <p style="display:inline;"> {{ task.time_estimate }} (hrs) </p>
+                            </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+
+
             </div>
+
+
             <div class="col-sm" style="border-right-style: groove">
-                <center> <strong>  DONE  </strong> </center>
+               {% for task in project.tasks  %}
+                    {% if task.status=="DONE" %}
+                    <div class="card" style="width: 20rem; margin: 3%;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="padding-top: 1%; padding-left: 1%;">{{ task.name }}</h5>
+                                <h6>Task Description:</h6>
+                                <p class="card-text" style="padding-left: 1%">{{ task.description }}</p>
+                                <h6>Assigned to :  {{ task.user.f_name }} {{ task.user.l_name }} </h6>
+                                <p style="font-weight: 600; display: inline;" >Remaining time : </p> <p style="display:inline;"> {{ task.time_estimate }} (hrs) </p>
+                            </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
             </div>
-          </div>
+            </div>
 
 
-        {% endfor %}
 
         </div>
 
@@ -160,6 +208,10 @@
          $("#fuck").val(gid.val());
 
     });
+
+     $(".card").click(function(){
+         alert("Card clicked - show edit dialog");
+     });
 
 </script>
 

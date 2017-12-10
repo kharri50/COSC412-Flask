@@ -1,0 +1,11 @@
+{# this is just to inherit all the css and js in the parent layout #}
+{%  extends 'layout.html' %}
+
+
+{#override the project name block - basically removing it #}
+{% block projectname %} {% endblock projectname %}
+
+{# override content block to make div for task content #}
+{% block content %}
+    //
+{% endblock content %}

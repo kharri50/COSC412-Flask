@@ -91,6 +91,8 @@ class Task(db.Model):
     status = db.Column(db.VARCHAR(25), nullable=False)
     project_id = db.Column(db.INTEGER, db.ForeignKey('project.id'))
     user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+    # backref to get the user assigned to the task
+    user = db.relationship("User", backref=db.backref('User', lazy='dynamic'))
 
 
 # add the model for user images here
@@ -133,6 +135,12 @@ def user_profile():
 @app.route('/signup/')
 def signup():
     return render_template("signup.html")
+
+
+# test code to show task block
+@app.route('/task_view/')
+def taskblock():
+    return render_template("task_block.html")
 
 
 @app.route('/process_signup/', methods=['POST'])
