@@ -1,0 +1,11 @@
+config.cfg
+
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+
+# pyhcarm files
+./idea
