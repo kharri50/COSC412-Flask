@@ -420,9 +420,7 @@
 {#        now, get the number of task in the project #}
 
         {% if admin_status == True %}
-            <br>
             <hr>
-         Okay, the user is the admin. Show create task dialog.
             <br>
             <br>
 
@@ -455,14 +453,16 @@
         {#    automatically pass the admin id so we don't users messing up #}
         <label for="taskDesc">Assign Task</label>
             <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton_task" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Select a group member
           </button>
+            <input type = "hidden" id = "member" name="member">
+
         <input type="hidden" id="selected_group" name="selected_group" value="none">
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton_task">
 
                {% for members in group.subscribers %}
-                   <a class="dropdown-item group_drop" id="{{ members.id }}_select" onclick="change_select();">
+                   <a class="dropdown-item group_drop_task" id="{{ members.id }}_select" onclick="change_select();">
                        {{ members.f_name }} {{ members.l_name }}
                        <input type="hidden" class="member_id" name = "member_name" id="member_name" value="{{ members.f_name }} {{ members.l_name }}"> </a>
                 {% endfor %}
@@ -506,6 +506,8 @@
         dropdownMenuButton.innerHTML = gid.val();
         selected_group.value = gid.val();
 
+        $("#member").val(gid.val());
+
         console.log("Selected group: "+selected_group.value);
 
         // now change the group name in the hidden input
@@ -513,6 +515,29 @@
          $("#fuck").val(gid.val());
 
     });
+
+
+
+       $(".group_drop_task").click(function () {
+        var gid = $(this).find(".member_id");
+              //   alert(gid.val())
+
+       // window.location.href = "/group_detail/"+gid.val();
+        var  dropdownMenuButton = document.getElementById("dropdownMenuButton_task");
+        var selected_group = $('#selected_group_task');
+        dropdownMenuButton.innerHTML = gid.val();
+        selected_group.value = gid.val();
+
+        $("#member").val(gid.val());
+
+        console.log("Selected group: "+selected_group.value);
+
+        // now change the group name in the hidden input
+         $("#group_name").val(selected_group.value);
+         $("#fuck").val(gid.val());
+
+    });
+
 
 
      $(".status_drop").click(function(){

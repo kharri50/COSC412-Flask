@@ -375,7 +375,8 @@ def create_project():
 def create_task():
     task_name = request.form['task_name']
     task_description = request.form['task_desc']
-    assigned_member = request.form['fuck']
+    assigned_member = request.form['member']
+    print("Assigned mem from py : {}".format(assigned_member))
     time_est = request.form['time_est']
     project_id = request.form['fuck_2']
 
