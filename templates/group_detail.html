@@ -14,7 +14,7 @@
     and columns of the tasks. #}
 
 {#    check if they've got a project assigned to the group #}
-    {%  if group.project_id == -1  %}
+    {%  if group.project_id == -1 %}
         {# They can only create a project if they're the admin #}
             {%   if admin_status == True  %}
                 <strong style="padding-bottom: 1%"> You don't currently have a project for this group. Would you like to create one? </strong>
@@ -50,20 +50,125 @@
 
             <div class="row" style="border-bottom-style: groove; border-top-style: groove">
 
-            <div class="col-sm" style="border-right-style: groove; border-left-style: groove">
+            <div class="col-sm" style="border-right-style: groove; border-left-style: groove;">
                 {# this will represent the to-do column #}
                 {% for task in project.tasks  %}
                     {% if task.status=="TODO" %}
 
-                        <div class="card" style="width: 20rem; margin: 3%;">
+                        <div class="card" style="width: 20rem; margin: 3%;  background-color: rgba(255,46,33,0.65)">
+                        <input type = "hidden" class="taskId" id = "taskId" value="{{ task.id }}">
                             <div class="card-body" style="margin: 2%">
                                 <h5 class="card-title" style="padding-top: 1%; padding-left: 1%;">{{ task.name }}</h5>
                                 <h6>Task Description:</h6>
                                 <p class="card-text" style="padding-left: 1%">{{ task.description }}</p>
                                 <h6>Assigned to :  {{ task.user.f_name }} {{ task.user.l_name }} </h6>
                                 <p style="font-weight: 600; display: inline;" >Remaining time : </p> <p style="display:inline;"> {{ task.time_estimate }} (hrs) </p>
+
+
+                                <!-- Button trigger modal -->
+                                <br>
+                                <br>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                          Edit
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Task: {{ task.name }}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+
+
+                                  <form action="/process_task_edit/" method="POST">
+
+                            <input type = "hidden" id="fuck" name="fuck">
+                            <input type = "hidden" id="fuck_2" name="fuck_2" value="{{ group.project.id }} {{ project.id }}">
+                            <input type="hidden" name="gid" id = "gid" value="{{ group.id }}">
+                                      <input type = "hidden" name="task_id" id = "task_id" value="{{ task.id }}">
+                                       <input type = "hidden" name="group_id" id = "group_id" value="{{ group.id }}">
+
+
+
+
+
+            <div class="form-group">
+                <label for="taskName">Task Name</label>
+                 <input type="text" class="form-control" name="edit_task_name" id="edit_taskName_input" aria-describedby="task_name" placeholder="{{ task.name }}" value="{{ task.name }}">
+                </div>
+            <br>
+                <div class="form-group">
+                    <label for="taskDesc">Task Description</label>
+                    <textarea class="form-control" id="edit_task_desc" name = "edit_task_desc"> {{ task.description }}</textarea>
+                </div>
+            <br>
+
+    <label for="timeEst">Time Estimate (HRS)</label>
+    <input type="text" class="form-control" id="edit_time_est" name = "edit_time_est" placeholder=1>
+
+            <br>
+
+        {#    automatically pass the admin id so we don't users messing up #}
+        <label for="taskDesc">Reassign Task</label>
+            <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select a group member
+          </button>
+        <input type="hidden" id="selected_group" name="selected_group" value="none">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+               {% for members in group.subscribers %}
+                   <a class="dropdown-item group_drop" id="{{ members.id }}_select" onclick="change_select();">
+                       {{ members.f_name }} {{ members.l_name }}
+                       <input type="hidden" class="member_id" name = "member_name" id="member_name" value="{{ members.f_name }} {{ members.l_name }}"> </a>
+                {% endfor %}
+          </div>
+        </div>
+
+                                  <br>
+
+          <label for="taskDesc">Status</label>
+            <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuStatus"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select a Status
+          </button>
+{#                hidden input for selected group member #}
+                 <input type="hidden" id="selected_status" name="selected_status" value="none">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                   <a class="dropdown-item  status_drop" id="todo_select">TODO
+                   <input type="hidden" class="status_id" name = "status_name" id="status_name" value="TODO"> </a>
+
+                    <a class="dropdown-item  status_drop" id="todo_select">DOING
+                   <input type="hidden" class="status_id" name = "status_name" id="status_name" value="DOING"> </a>
+
+                    <a class="dropdown-item  status_drop" id="todo_select">DONE
+                   <input type="hidden" class="status_id" name = "status_name" id="status_name" value="DONE"> </a>
+
+          </div>
+        </div>
+
+
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                              </div>
+
+                                   </form>
                             </div>
+                          </div>
                         </div>
+                            </div>
+
+                        </div>
+
 
                     {% endif %}
                 {% endfor %}
@@ -75,18 +180,119 @@
                       {# this will represent the DOING column #}
                 {% for task in project.tasks  %}
                     {% if task.status=="DOING" %}
-                    <div class="card" style="width: 20rem; margin: 3%;">
+                    <div class="card" style="width: 20rem; margin: 3%;  background-color: rgba(255,247,0,0.5)">
+                        <input type = "hidden" class="taskId" id = "taskId" value="{{ task.id }}">
+
                             <div class="card-body">
                                 <h5 class="card-title" style="padding-top: 1%; padding-left: 1%;">{{ task.name }}</h5>
                                 <h6>Task Description:</h6>
                                 <p class="card-text" style="padding-left: 1%">{{ task.description }}</p>
                                 <h6>Assigned to :  {{ task.user.f_name }} {{ task.user.l_name }} </h6>
                                 <p style="font-weight: 600; display: inline;" >Remaining time : </p> <p style="display:inline;"> {{ task.time_estimate }} (hrs) </p>
+
+                                  <!-- Button trigger modal -->
+                                <br>
+                                <br>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                          Edit
+                        </button>
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Task: {{ task.name }}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+
+
+                                  <form action="/process_task_edit/" method="POST">
+
+                            <input type = "hidden" id="fuck" name="fuck">
+                            <input type = "hidden" id="fuck_2" name="fuck_2" value="{{ group.project.id }} {{ project.id }}">
+                            <input type="hidden" name="gid" id = "gid" value="{{ group.id }}">
+                                      <input type = "hidden" name="task_id" id = "task_id" value="{{ task.id }}">
+                                       <input type = "hidden" name="group_id" id = "group_id" value="{{ group.id }}">
+
+
+
+
+
+            <div class="form-group">
+                <label for="taskName">Task Name</label>
+                 <input type="text" class="form-control" name="edit_task_name" id="edit_taskName_input" aria-describedby="task_name" placeholder="{{ task.name }}" value="{{ task.name }}">
+                </div>
+            <br>
+                <div class="form-group">
+                    <label for="taskDesc">Task Description</label>
+                    <textarea class="form-control" id="edit_task_desc" name = "edit_task_desc"> {{ task.description }}</textarea>
+                </div>
+            <br>
+
+    <label for="timeEst">Time Estimate (HRS)</label>
+    <input type="text" class="form-control" id="edit_time_est" name = "edit_time_est" placeholder=1>
+
+            <br>
+
+        {#    automatically pass the admin id so we don't users messing up #}
+        <label for="taskDesc">Reassign Task</label>
+            <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select a group member
+          </button>
+        <input type="hidden" id="selected_group" name="selected_group" value="none">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+               {% for members in group.subscribers %}
+                   <a class="dropdown-item group_drop" id="{{ members.id }}_select" onclick="change_select();">
+                       {{ members.f_name }} {{ members.l_name }}
+                       <input type="hidden" class="member_id" name = "member_name" id="member_name" value="{{ members.f_name }} {{ members.l_name }}"> </a>
+                {% endfor %}
+          </div>
+        </div>
+
+                                  <br>
+
+          <label for="taskDesc">Status</label>
+            <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuStatus"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select a Status
+          </button>
+{#                hidden input for selected group member #}
+                 <input type="hidden" id="selected_status" name="selected_status" value="none">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                   <a class="dropdown-item  status_drop" id="todo_select">TODO
+                   <input type="hidden" class="status_id" name = "status_name" id="status_name" value="TODO"> </a>
+
+                    <a class="dropdown-item  status_drop" id="todo_select">DOING
+                   <input type="hidden" class="status_id" name = "status_name" id="status_name" value="DOING"> </a>
+
+                    <a class="dropdown-item  status_drop" id="todo_select">DONE
+                   <input type="hidden" class="status_id" name = "status_name" id="status_name" value="DONE"> </a>
+
+          </div>
+        </div>
+
+
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                              </div>
+
+                                   </form>
+                            </div>
+                          </div>
+                        </div>
                             </div>
                     </div>
                     {% endif %}
                 {% endfor %}
-
 
             </div>
 
@@ -94,18 +300,117 @@
             <div class="col-sm" style="border-right-style: groove">
                {% for task in project.tasks  %}
                     {% if task.status=="DONE" %}
-                    <div class="card" style="width: 20rem; margin: 3%;">
+                    <div class="card" style="width: 20rem; margin: 3%;  background-color: rgba(27,255,4,0.5);">
+                      <input type = "hidden" class="taskId" id = "taskId" value="{{ task.id }}">
                             <div class="card-body">
                                 <h5 class="card-title" style="padding-top: 1%; padding-left: 1%;">{{ task.name }}</h5>
                                 <h6>Task Description:</h6>
                                 <p class="card-text" style="padding-left: 1%">{{ task.description }}</p>
                                 <h6>Assigned to :  {{ task.user.f_name }} {{ task.user.l_name }} </h6>
                                 <p style="font-weight: 600; display: inline;" >Remaining time : </p> <p style="display:inline;"> {{ task.time_estimate }} (hrs) </p>
+
+                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                          Edit
+                        </button>
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Task: {{ task.name }}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+
+
+                                  <form action="/process_task_edit/" method="POST">
+
+                            <input type = "hidden" id="fuck" name="fuck">
+                            <input type = "hidden" id="fuck_2" name="fuck_2" value="{{ group.project.id }} {{ project.id }}">
+                            <input type="hidden" name="gid" id = "gid" value="{{ group.id }}">
+                                      <input type = "hidden" name="task_id" id = "task_id" value="{{ task.id }}">
+                                       <input type = "hidden" name="group_id" id = "group_id" value="{{ group.id }}">
+
+
+
+
+
+            <div class="form-group">
+                <label for="taskName">Task Name</label>
+                 <input type="text" class="form-control" name="edit_task_name" id="edit_taskName_input" aria-describedby="task_name" placeholder="{{ task.name }}" value="{{ task.name }}">
+                </div>
+            <br>
+                <div class="form-group">
+                    <label for="taskDesc">Task Description</label>
+                    <textarea class="form-control" id="edit_task_desc" name = "edit_task_desc"> {{ task.description }}</textarea>
+                </div>
+            <br>
+
+    <label for="timeEst">Time Estimate (HRS)</label>
+    <input type="text" class="form-control" id="edit_time_est" name = "edit_time_est" placeholder=1>
+
+            <br>
+
+        {#    automatically pass the admin id so we don't users messing up #}
+        <label for="taskDesc">Reassign Task</label>
+            <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select a group member
+          </button>
+        <input type="hidden" id="selected_group" name="selected_group" value="none">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+               {% for members in group.subscribers %}
+                   <a class="dropdown-item group_drop" id="{{ members.id }}_select" onclick="change_select();">
+                       {{ members.f_name }} {{ members.l_name }}
+                       <input type="hidden" class="member_id" name = "member_name" id="member_name" value="{{ members.f_name }} {{ members.l_name }}"> </a>
+                {% endfor %}
+          </div>
+        </div>
+
+                                  <br>
+
+          <label for="taskDesc">Status</label>
+            <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuStatus"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select a Status
+          </button>
+{#                hidden input for selected group member #}
+                 <input type="hidden" id="selected_status" name="selected_status" value="none">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                   <a class="dropdown-item  status_drop" id="todo_select">TODO
+                   <input type="hidden" class="status_id" name = "status_name" id="status_name" value="TODO"> </a>
+
+                    <a class="dropdown-item  status_drop" id="todo_select">DOING
+                   <input type="hidden" class="status_id" name = "status_name" id="status_name" value="DOING"> </a>
+
+                    <a class="dropdown-item  status_drop" id="todo_select">DONE
+                   <input type="hidden" class="status_id" name = "status_name" id="status_name" value="DONE"> </a>
+
+          </div>
+        </div>
+
+
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                              </div>
+
+                                   </form>
+                            </div>
+                          </div>
+                        </div>
                             </div>
                     </div>
                     {% endif %}
                 {% endfor %}
             </div>
+
             </div>
 
 
@@ -209,8 +514,25 @@
 
     });
 
+
+     $(".status_drop").click(function(){
+         var selected = $(this).find(".status_id");
+        // alert(selected.val());
+         // now update the status value with the selected option
+         var statusButton = document.getElementById("dropdownMenuStatus");
+         statusButton.innerHTML  = selected.val();
+
+         // update the hidden input field with the actual value
+         $("#selected_status").val(selected.val());
+         console.log("selected status from DD : " + $("#selected_status").val());
+     });
+
      $(".card").click(function(){
-         alert("Card clicked - show edit dialog");
+        // alert("Card clicked - show edit dialog");
+         // find the task id so it can be edited
+         var task = $(this).find(".taskId");
+         console.log("Task ID : " + task.val());
+
      });
 
 </script>

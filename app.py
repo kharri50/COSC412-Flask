@@ -103,7 +103,6 @@ class UserImage(db.Model):
     # you can add a back ref here in the user table for the image
 
 
-
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -329,7 +328,6 @@ def group_detail(g_id):
     if group_obj.admin_id == user_obj.id:
         is_admin = True
 
-
     print("Group name from group detail : {}".format(group_obj.name))
     # now I'm going to get the project *if there is one, and then pass it with the url *
     project_obj = Project.query.filter_by(group_id=group_obj.id).first()
@@ -410,6 +408,38 @@ def create_task():
 
     return redirect('group_detail/{}'.format(group_id))
 
+
+@app.route('/process_task_edit/', methods=['POST'])
+def editTask():
+    group_id = request.form['group_id']
+    task_id = request.form['task_id']
+    task_name = request.form['edit_task_name']
+    task_desc = request.form['edit_task_desc']
+    time_est = request.form['edit_time_est']
+
+    # need to get name of person to change id
+    assigned_member = request.form['fuck']
+    print("Assigned member : {}".format(assigned_member))
+    names = assigned_member.split()
+    userObj = User.query.filter_by(f_name=names[0],l_name=names[1]).first()
+    status = request.form["selected_status"]
+    print("Status from python : {}".format(status))
+    print ("Task id from edit : {}".format(task_id))
+
+    # now run an update query
+    sql = "UPDATE task SET name = '{}'," \
+           " description = '{}' ," \
+           " time_estimate = {} , " \
+           "status='{}', " \
+           "user_id={}" \
+           " WHERE id = {};".format(task_name, task_desc, time_est,status,userObj.id, task_id)
+
+    # the query is correct, now run it
+    db.engine.execute(sql)
+
+    # now that it's done, redirect them to the same page they were just on
+    return redirect('group_detail/{}'.format(group_id))
+    print("SQL Query from python : {}".format(sql))
 
 
 @app.route('/project_create/<int:gro_id>')
