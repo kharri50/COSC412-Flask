@@ -5,6 +5,25 @@ PASS IT AS A HIDDEN FIELD. #}
 
 {% block projectname %} Group Detail {% endblock projectname %}
 
+{# overrides the nav bar #}
+
+ {% block nav %}  <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/">Dashboard<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+              <li class="nav-item">
+              </li>
+          </ul>
+        </nav>
+          {% endblock nav %}
+
 {% block content %}
 
 
@@ -20,19 +39,22 @@ PASS IT AS A HIDDEN FIELD. #}
     {%  if group.project_id == -1 %}
         {# They can only create a project if they're the admin #}
             {%   if admin_status == True  %}
-                <strong style="padding-bottom: 1%"> You don't currently have a project for this group. Would you like to create one? </strong>
-                {% include "create_project_form.html" %}
+                <strong style="padding-bottom: 1%"> You don't currently have a project for this group. Would you like to <a href = "../project_create/{{ group.id }}"> create one </a> ? </strong>
             {% endif %}
         {% endif %}
 
+
+     {%  if group.project_id == NULL %}
+        {# They can only create a project if they're the admin #}
+            {%   if admin_status == True  %}
+                <strong style="padding-bottom: 1%"> You don't currently have a project for this group. Would you like to <a href ="../project_create/{{ group.id }}"> create one </a> ? </strong>
+            {% endif %}
+        {% endif %}
     {# This is the case where the group does have a project..   #}
 
     {% if group.project_id != -1 %}
-        Project ID : {{ project.id }}
         <br>
         <br>
-
-
         <div class="container">
 
           <div class="row" style="border-bottom-style: groove; border-top-style: groove">
@@ -51,6 +73,8 @@ PASS IT AS A HIDDEN FIELD. #}
 
           </div>
 
+
+            {#        expand this at your own risk .... #}
             <div class="row" style="border-bottom-style: groove; border-top-style: groove">
 
                 {# this starts the rows and columns of the tasks.
