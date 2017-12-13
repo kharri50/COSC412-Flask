@@ -49,6 +49,8 @@ class Group(db.Model):
                               backref=db.backref('members'),
                               lazy='dynamic')
 
+    project_id = db.Column(db.INTEGER, nullable=False)
+
     # project_id = db.Column(db.INTEGER, db.ForeignKey('project.id'))
     project = db.relationship("Project", backref=db.backref('Project'), lazy='dynamic')
 
@@ -188,7 +190,7 @@ def process_create_group():
         if admin is not None:
             admin_id = admin.id
             print("Admin name from query : {}".format(admin.f_name))
-            g = Group(name=group_name, description=desc, admin_id=admin_id)
+            g = Group(name=group_name, description=desc, admin_id=admin_id, project_id=-1)
             db.session.add(g)
             db.session.commit()
             return redirect('/edit_group/{}'.format(g.id))
@@ -419,7 +421,7 @@ def editTask():
     time_est = request.form['edit_time_est']
 
     # need to get name of person to change id
-    assigned_member = request.form['fuck']
+    assigned_member = request.form['selected_member']
     print("Assigned member : {}".format(assigned_member))
     names = assigned_member.split()
     userObj = User.query.filter_by(f_name=names[0],l_name=names[1]).first()
