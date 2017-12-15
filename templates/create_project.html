@@ -1,5 +1,7 @@
 {% extends 'layout.html' %}
 
+
+{% block projectname %} Create a Project {% endblock %}
 {% block content %}
     <form action="/process_project_create/" method="POST">
 
@@ -27,11 +29,11 @@
         <input type="hidden" id="selected_group" name="selected_group" value="none">
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                {% for group in admin.members %}
-
+                    {% if group.name != "orphan group" %}
                    <a class="dropdown-item group_drop" id="{{ group.name }}_select" onclick="change_select();">
                        {{ group.name }}
                        <input type="hidden" class="group_id" name = "group_name" id="group_{{ group.name }}" value="{{ group.name }}"> </a>
-
+                    {% endif %}
                 {% endfor %}
           </div>
         </div>

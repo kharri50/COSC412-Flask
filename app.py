@@ -54,6 +54,10 @@ class Group(db.Model):
     # project_id = db.Column(db.INTEGER, db.ForeignKey('project.id'))
     project = db.relationship("Project", backref=db.backref('Project'), lazy='dynamic')
 
+    posts = db.relationship('Post',
+                        backref=db.backref('post'),
+                        lazy='dynamic')
+
 
 # the following is a definition for a project, which belongs to a group.
 # technically, this mirrors the structure of the group, but it's not an atomic.
@@ -103,6 +107,21 @@ class UserImage(db.Model):
     uid = db.Column(db.INTEGER, db.ForeignKey('user.id'))
     imagePath = db.Column(db.VARCHAR(255), nullable=False)
     # you can add a back ref here in the user table for the image
+
+# creating a model to contain group posts..
+class Post(db.Model):
+    post_id = db.Column(db.INTEGER, primary_key=True, nullable=False)
+    user_id = db.Column(db.INTEGER, db.ForeignKey('user.id'))
+    text = db.Column(db.TEXT, nullable=False)
+    posted_date = db.Column(db.VARCHAR(25), nullable=False)
+    posted_time = db.Column(db.FLOAT, nullable=False)
+
+    # db backref in the common situation that we're lazy
+    puser = db.relationship("User", backref=db.backref('puser', lazy='dynamic'))
+    group_id = db.Column(db.INTEGER, db.ForeignKey('group.id'))
+
+
+
 
 
 @app.route('/')
@@ -443,6 +462,11 @@ def editTask():
     # now that it's done, redirect them to the same page they were just on
     return redirect('group_detail/{}'.format(group_id))
     print("SQL Query from python : {}".format(sql))
+
+
+@app.route('/group_feed/<int:gro_id>')
+def group_feed(gro_id):
+    group_obj = Group.query.filter_by(id=gro_id).first()
 
 
 @app.route('/project_create/<int:gro_id>')

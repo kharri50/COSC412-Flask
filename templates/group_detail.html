@@ -28,7 +28,7 @@ PASS IT AS A HIDDEN FIELD. #}
 
 
 <h1>
-   {{  group.name.upper() }} {{ project.id }}
+   {{  group.name.upper() }}
 </h1>
     <hr>
 {# This is for the admin page, but we're going to use
@@ -52,22 +52,22 @@ PASS IT AS A HIDDEN FIELD. #}
         {% endif %}
     {# This is the case where the group does have a project..   #}
 
-    {% if group.project_id != -1 %}
-        <br>
-        <br>
-        <div class="container">
+                <br>
+                <br>
+        {#        only execute this if it has contents.. #}
+                {% if project.tasks != NULL %}
+                <div class="container">
 
-          <div class="row" style="border-bottom-style: groove; border-top-style: groove">
-            <div class="col-sm" style="border-right-style: groove; border-left-style: groove">
-                <center> <strong> TO DO  </strong></center>
-            </div>
-            <div class="col-sm" style="border-right-style: groove;">
-                <center> <strong> DOING  </strong> </center>
-            </div>
-            <div class="col-sm" style="border-right-style: groove">
-                <center> <strong>  DONE  </strong> </center>
-            </div>
-
+                  <div class="row" style="border-bottom-style: groove; border-top-style: groove">
+                    <div class="col-sm" style="border-right-style: groove; border-left-style: groove">
+                        <center> <strong> TO DO  </strong></center>
+                    </div>
+                    <div class="col-sm" style="border-right-style: groove;">
+                        <center> <strong> DOING  </strong> </center>
+                    </div>
+                    <div class="col-sm" style="border-right-style: groove">
+                        <center> <strong>  DONE  </strong> </center>
+                    </div>
             {#   beginning heading of task table #}
 
 
@@ -768,13 +768,13 @@ PASS IT AS A HIDDEN FIELD. #}
     {% endif %}
 <br>
 <hr>
-
-<h1>
- Group view
-</h1>
-
-
-{# This includes the template so we don't have
+    {#    include this link to edit the group #}
+    {% if admin_status == True %}
+        <a href = "../edit_group/{{ group.id }}"> Edit Group </a>
+    {% endif %}
+    <br>
+    <br>
+    {# This includes the template so we don't have
    to continiously rewrite the code. DRY. #}
     {% include "group_template.html" %}
 
